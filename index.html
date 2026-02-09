@@ -1,184 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Happy Valentine 💖</title>
+  <meta charset="UTF-8">
+  <title>For Vinoth 💘</title>
 
   <style>
     body {
-      margin: 0; 
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      margin: 0;
       overflow: hidden;
-      position: relative;
+      font-family: 'Comic Sans MS', cursive;
     }
 
-    .card {
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
-      padding: 40px 50px;
+    /* Background Video */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .video-bg iframe {
+      width: 100vw;
+      height: 100vh;
+      filter: blur(8px) brightness(0.6);
+    }
+
+    /* Center Content */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       text-align: center;
-      max-width: 350px;
+      color: white;
       z-index: 10;
-      position: relative;
     }
 
     h1 {
-      color: #ff3864;
-      margin-bottom: 10px;
-      font-size: 2em;
+      font-size: 3em;
+      animation: fadeIn 3s ease-in-out;
     }
 
-    p {
-      font-size: 1.1em;
-      color: #555;
-      margin-top: 0;
-    }
-
-    /* Glow effect for name */
     .glow {
-      text-shadow: 0 0 10px #ff4b6e, 0 0 20px #ff1f4d;
+      text-shadow: 0 0 15px #ff4b6e, 0 0 30px #ff1f4d;
       animation: glowPulse 2s infinite alternate;
     }
 
     @keyframes glowPulse {
-      from { text-shadow: 0 0 10px #ff4b6e; }
-      to { text-shadow: 0 0 25px #ff1f4d; }
+      from { text-shadow: 0 0 15px #ff4b6e; }
+      to { text-shadow: 0 0 35px #ff1f4d; }
     }
 
-    /* Buttons */
-    button {
-      background: #ff3864;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: 0.3s;
+    p {
+      font-size: 1.5em;
       margin-top: 10px;
+      animation: fadeIn 5s ease-in-out;
     }
 
-    button:hover {
-      background: #ff1f4d;
-      transform: scale(1.1);
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    #secretMessage {
-      display: none;
-      margin-top: 15px;
-      color: #ff3864;
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-
-    /* Floating hearts container */
-    .hearts {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      top: 0; 
-      left: 0;
-      z-index: 1;
-    }
-
-    /* Single heart */
+    /* Floating Hearts */
     .heart {
       position: absolute;
-      width: 30px;
-      height: 30px;
-      background: #ff4b6e;
-      clip-path: polygon(
-        50% 0%, 61% 13%, 75% 18%, 84% 29%, 
-        90% 42%, 90% 58%, 84% 71%, 75% 82%, 
-        61% 87%, 50% 100%, 39% 87%, 25% 82%, 
-        16% 71%, 10% 58%, 10% 42%, 16% 29%, 25% 18%, 39% 13%
-      );
-      opacity: 0.8;
-      animation-name: floatUp;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
+      color: #ff4b6e;
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-      }
-      10% { opacity: 0.8; }
-      100% {
-        transform: translateY(-150px) rotate(360deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(-10vh); opacity: 0; }
     }
+
   </style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Happy Valentine’s Day My Love <span class="glow">Vinoth 💘</span></h1>
-    <p>I will Never Leave your Hand ❤️<br>Always & Forever 💕</p>
-
-    <button onclick="showMessage()">Click for Surprise 🎁</button>
-
-    <div id="secretMessage">
-      Vinoth 💘 You are my today, tomorrow & forever ❤️
-    </div>
-
-    <br>
-
-    <button onclick="playMusic()">Play Our Song 🎵</button>
-
-    <audio id="loveMusic" loop>
-  <source src="love-song.mp3" type="audio/mpeg">
-</audio>
-
+  <!-- YouTube Background -->
+  <div class="video-bg">
+    <iframe 
+      src="https://www.youtube.com/embed/bwTHSuQL_M5EnLWy?autoplay=1&mute=0&controls=0&loop=1&playlist=bwTHSuQL_M5EnLWy"
+      frameborder="0"
+      allow="autoplay">
+    </iframe>
   </div>
 
-  <div class="hearts"></div>
+  <!-- Center Love Message -->
+  <div class="content">
+    <h1>Happy Valentine’s Day <span class="glow">Vinoth 💘</span></h1>
+    <p>You are my today, tomorrow & forever ❤️</p>
+  </div>
 
   <script>
-    const heartsContainer = document.querySelector('.hearts');
-
-    function createHeart() {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = (4 + Math.random() * 4) + 's';
-
-      const size = 20 + Math.random() * 20;
-      heart.style.width = size + 'px';
-      heart.style.height = size + 'px';
-
-      heartsContainer.appendChild(heart);
+    // Floating Hearts Generator
+    setInterval(function() {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
 
       setTimeout(() => {
-        if (heart.parentNode) {
-          heartsContainer.removeChild(heart);
-        }
-      }, parseFloat(heart.style.animationDuration) * 1000);
-    }
-
-    setInterval(createHeart, 300);
-
-    function showMessage() {
-      document.getElementById("secretMessage").style.display = "block";
-    }
-
-    function playMusic() {
-      document.getElementById("loveMusic").play();
-    }
+        heart.remove();
+      }, 6000);
+    }, 300);
   </script>
 
 </body>
 </html>
-
