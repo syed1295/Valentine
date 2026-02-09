@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Happy Valentine 💖</title>
+
   <style>
     body {
       margin: 0; 
@@ -30,13 +31,50 @@
     h1 {
       color: #ff3864;
       margin-bottom: 10px;
-      font-size: 2.4em;
+      font-size: 2em;
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.1em;
       color: #555;
       margin-top: 0;
+    }
+
+    /* Glow effect for name */
+    .glow {
+      text-shadow: 0 0 10px #ff4b6e, 0 0 20px #ff1f4d;
+      animation: glowPulse 2s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      from { text-shadow: 0 0 10px #ff4b6e; }
+      to { text-shadow: 0 0 25px #ff1f4d; }
+    }
+
+    /* Buttons */
+    button {
+      background: #ff3864;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #ff1f4d;
+      transform: scale(1.1);
+    }
+
+    #secretMessage {
+      display: none;
+      margin-top: 15px;
+      color: #ff3864;
+      font-weight: bold;
+      font-size: 1.1em;
     }
 
     /* Floating hearts container */
@@ -46,7 +84,8 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
-      top: 0; left: 0;
+      top: 0; 
+      left: 0;
       z-index: 1;
     }
 
@@ -68,15 +107,12 @@
       animation-iteration-count: infinite;
     }
 
-    /* Animate hearts floating up with rotation and fading */
     @keyframes floatUp {
       0% {
         transform: translateY(100vh) rotate(0deg);
         opacity: 0;
       }
-      10% {
-        opacity: 0.8;
-      }
+      10% { opacity: 0.8; }
       100% {
         transform: translateY(-150px) rotate(360deg);
         opacity: 0;
@@ -84,49 +120,64 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="card">
-    <h1>Happy Valentine’s Day My Love Vinoth💘</h1>
+    <h1>Happy Valentine’s Day My Love <span class="glow">Vinoth 💘</span></h1>
     <p>I will Never Leave your Hand ❤️<br>Always & Forever 💕</p>
+
+    <button onclick="showMessage()">Click for Surprise 🎁</button>
+
+    <div id="secretMessage">
+      Vinoth 💘 You are my today, tomorrow & forever ❤️
+    </div>
+
+    <br>
+
+    <button onclick="playMusic()">Play Our Song 🎵</button>
+
+    <audio id="loveMusic" loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    </audio>
+
   </div>
 
-  <div class="hearts">
-    <!-- Hearts will be added by JavaScript -->
-  </div>
+  <div class="hearts"></div>
 
   <script>
     const heartsContainer = document.querySelector('.hearts');
 
-    // Function to create and animate hearts
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
 
-      // Random horizontal position (0 to 100%)
       heart.style.left = Math.random() * 100 + 'vw';
-
-      // Random animation duration between 4 and 8 seconds
       heart.style.animationDuration = (4 + Math.random() * 4) + 's';
 
-      // Random size between 20px and 40px
       const size = 20 + Math.random() * 20;
       heart.style.width = size + 'px';
       heart.style.height = size + 'px';
 
       heartsContainer.appendChild(heart);
 
-      // Remove heart after animation completes
       setTimeout(() => {
-        heartsContainer.removeChild(heart);
+        if (heart.parentNode) {
+          heartsContainer.removeChild(heart);
+        }
       }, parseFloat(heart.style.animationDuration) * 1000);
     }
 
-    // Create a new heart every 300ms
     setInterval(createHeart, 300);
+
+    function showMessage() {
+      document.getElementById("secretMessage").style.display = "block";
+    }
+
+    function playMusic() {
+      document.getElementById("loveMusic").play();
+    }
   </script>
 
 </body>
 </html>
-
-
